@@ -4,18 +4,12 @@ import Header from './components/Header/Header';
 import Entry from './views/Entry';
 
 import './App.css';
-import { PlannerContext } from './context/PlannerContext';
+import { PlannerContext, PlannerProvider } from './context/PlannerContext';
 
 export default function App() {
   return (
     <>
-      <PlannerContext.Provider
-        value={{
-          entries,
-          addEntry,
-          getEntry,
-        }}
-      >
+      <PlannerProvider>
         <Header />
         <BrowserRouter>
           <Switch>
@@ -30,7 +24,7 @@ export default function App() {
             </Route>
           </Switch>
         </BrowserRouter>
-      </PlannerContext.Provider>
+      </PlannerProvider>
     </>
   );
 }

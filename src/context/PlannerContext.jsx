@@ -35,6 +35,12 @@ const PlannerProvider = ({ children }) => {
         content: 'I should write in my planner',
         date: parseDate(new Date()),
       },
+      {
+        id: 1,
+        title: 'Take A Break',
+        content: 'I should write in my planner',
+        date: parseDate(new Date()),
+      },
     ];
     dispatch({
       type: 'reset',
