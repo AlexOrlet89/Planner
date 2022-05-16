@@ -15,7 +15,9 @@ export default function Entry() {
     setEntry(getEntry(id));
   }, [id, entries.length]);
 
-  const HandleEditButton = () => {};
+  const HandleEditButton = () => {
+    isEditing ? setIsEditing(false) : setIsEditing(true);
+  };
 
   let content;
 
@@ -28,6 +30,14 @@ export default function Entry() {
         <button></button>
       </form>
     );
+  } else {
+    content = (
+      <article className={styles.entry}>
+        <h1>{entry?.title}</h1>
+        <p>Due: {entry?.date}</p>
+        <p>{entry?.content}</p>
+      </article>
+    );
   }
 
   return (
@@ -36,11 +46,12 @@ export default function Entry() {
         &laquo; Back to Planner
       </Link>
       <button onClick={HandleEditButton}>{isEditing ? 'Save' : 'Edit'}</button>
-      <article className={styles.entry}>
+      {content}
+      {/* <article className={styles.entry}>
         <h1>{entry?.title}</h1>
         <p>Due: {entry?.date}</p>
         <p>{entry?.content}</p>
-      </article>
+      </article> */}
     </>
   );
 }
