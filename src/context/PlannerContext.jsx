@@ -11,6 +11,7 @@ function entriesReducer(entries, { type, payload }) {
     case 'reset':
       return [...payload];
     case 'update':
+      console.log('update', payload);
       return entries.map((entry) =>
         entry.id === payload.id ? payload : entry
       );
@@ -61,12 +62,21 @@ const PlannerProvider = ({ children }) => {
     return entries.find((note) => note.id === Number(id));
   };
 
+  const editEntry = (entry) => {
+    console.log(entry);
+    dispatch({
+      type: 'update',
+      payload: { ...entry, date: parseDate(entry.date) },
+    });
+  };
+
   return (
     <PlannerContext.Provider
       value={{
         entries,
         addEntry,
         getEntry,
+        editEntry,
       }}
     >
       {children}
